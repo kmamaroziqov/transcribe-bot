@@ -1,0 +1,37 @@
+services:
+  telegram-api:
+    image: aiogram/telegram-bot-api@sha256:06a7dfa284e1f4675393c1e39e7db6dff49fd043e69dd8b1e19c05570a04d236
+    restart: unless-stopped
+    environment:
+      TELEGRAM_API_ID: "${TELEGRAM_API_ID:?Add TELEGRAM_API_ID to .env}"
+      TELEGRAM_API_HASH: "${TELEGRAM_API_HASH:?Add TELEGRAM_API_HASH to .env}"
+      TELEGRAM_LOCAL: "1"
+      TELEGRAM_STAT: "1"
+      TELEGRAM_VERBOSITY: "0"
+    volumes:
+      - telegram-api-data:/var/lib/telegram-bot-api
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:8082/"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  stt:
+    environment:
+      STT_MAX_FILE_MB: "4096"
+
+  bot:
+    user: "101:101"
+    environment:
+      TELEGRAM_API_URL: http://telegram-api:8081
+      TELEGRAM_FILES_DIR: /var/lib/telegram-bot-api
+      MAX_FILE_MB: "4096"
+    volumes:
+      - telegram-api-data:/var/lib/telegram-bot-api:ro
+    depends_on:
+      telegram-api:
+        condition: service_healthy
+
+volumes:
+  telegram-api-data:

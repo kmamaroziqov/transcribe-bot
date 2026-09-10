@@ -1,0 +1,58 @@
+services:
+  stt:
+    image: transcribe-bot-rubai:local
+    build:
+      context: .
+      target: runtime
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${STT_PORT:-18000}:8000"
+    environment:
+      WHISPER_MODEL: /models/rubai
+      WHISPER_DEVICE: cuda
+      WHISPER_COMPUTE_TYPE: float16
+      WHISPER_BEAM_SIZE: "1"
+      STT_MAX_FILE_MB: "${STT_MAX_FILE_MB:-500}"
+      MAX_DURATION_SECONDS: "${MAX_DURATION_SECONDS:-3600}"
+    volumes:
+      - ./models/rubai-ct2:/models/rubai:ro
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      start_period: 120s
+      retries: 3
+
+  bot:
+    image: transcribe-bot-rubai:local
+    profiles: ["telegram"]
+    command: ["python3", "-m", "telegram_srt.bot"]
+    restart: unless-stopped
+    environment:
+      TELEGRAM_BOT_TOKEN: "${TELEGRAM_BOT_TOKEN:-}"
+      STT_API_URL: http://stt:8000
+      MAX_FILE_MB: "${MAX_FILE_MB:-20}"
+      MAX_DURATION_SECONDS: "${MAX_DURATION_SECONDS:-3600}"
+      MAX_JOBS: "${MAX_JOBS:-3}"
+      ALLOWED_USER_IDS: "${ALLOWED_USER_IDS:-}"
+      TELEGRAM_API_URL: "${TELEGRAM_API_URL:-}"
+    depends_on:
+      stt:
+        condition: service_healthy
+
+  convert:
+    image: transcribe-bot-rubai-converter:local
+    build:
+      context: .
+      target: converter
+    profiles: ["setup"]
+    volumes:
+      - ./models/rubai-source:/source:ro
+      - ./models/rubai-ct2:/output

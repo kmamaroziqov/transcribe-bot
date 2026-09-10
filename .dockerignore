@@ -1,0 +1,17 @@
+.env
+.venv
+.git
+__pycache__
+tests
+
+.env.*
+!.env.example
+models/
+.hf-cache/
+rubai-fp16/
+
+.docker-build/
+
+.smoke/
+
+.wheels/*.assembling
