@@ -1,0 +1,8 @@
+# Dub Studio browser editor source
+
+Source: https://github.com/timoncool/dub-studio
+Pinned checkout: `05eed6d1928b6f4af212b4128b51c7180006d1d0`. Application code is MIT; preserve LICENSE.
+
+The React editor and its assets are reused for the Telegram/browser product. Browser adaptations restrict processing to original-language subtitles and connect only to the bot-owned authenticated project/media/export API. Native model setup, local filesystem dialogs, global settings and unrestricted MCP are not public browser services. The existing Python bot continues to own transcription, quotas, accounting, project ownership and Telegram delivery. Node is build-time tooling only.
+
+Follow upstream AGENTS.md conventions when editing the copied UI: Lucide icons, localized user copy, build/lint/tests, lockfile discipline and changelog for user-visible changes. No models, customer media, runtime secrets or local-path APIs belong in the public bundle.
