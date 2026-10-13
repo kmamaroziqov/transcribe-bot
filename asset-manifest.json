@@ -30,8 +30,8 @@
   "assets/RussoOne-Regular-CObpATgf.ttf": "bc0abcc660bd8b7ad3000ecb2898a27c58a29a50f7ec81652fa12e75148d09df",
   "assets/YesevaOne-Regular-R3ZlfSrs.ttf": "a0c3215eb010032a68b6b472c7e520f77ddbcb3a93a83856bccad874ea96a7f5",
   "assets/default-jVcJgvWm.woff2": "886929903707c5bb28b07cd2eed69921b3d5ef5c49c73a0dd1e187ebf6546a4c",
-  "assets/index-C1QoZdQl.js": "147e1360eef820f3e4b739472eda5665fe49c2cd2e2427b45b3d566ef04a3c90",
-  "assets/index-De3bTyUF.css": "a0c3bd197e728ae9b11dd2d259b86fb1db21d759a9e8f912a094c1c53027428e",
+  "assets/index-Co3EewKT.js": "56c27a5e0b014df80fde0de69722ecda05e2c3978c5b7a1279bff4eb9a2c915b",
+  "assets/index-KB0Jzwg8.css": "bdfba0ae7207e09eeafce8d6d2d6f845d202c7eb29b8e7aafcd83e7a3d3b7d8a",
   "assets/jassub-worker-CLcXAXXL.wasm": "20464860545ca8aa624a4ec56eff45ab380377cf7247c31f4036342077836ed1",
   "assets/jassub-worker-DCYZhsIH.js": "cf0e4b9c025767b08161ed9246e4f193a6ef1a34138e178080976f2a5f2de559",
   "assets/jassub-worker-modern-C7bYVPj4.wasm": "dabc9087a659392de0fc86d167c87a085fc7500f3145a6d7f4bf2432cc650c03",
@@ -39,5 +39,5 @@
   "config.js": "6212bee39a6fc535c01c6239c7fcde61afb7e5555930c361fa6e9ec1770d6fc0",
   "favicon.svg": "62ee8be75af4a740c593f96f30b37e4c1f7e4b588f78251073d7fc4ec01021e2",
   "icons.svg": "b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a",
-  "index.html": "cce2ab1ff08807333e5d553b4b730d27cd09d5ef785124ac1c011b606f624f4c"
+  "index.html": "8265b453107c9433030902c8210d7db8d97aae62c9c837709170872b6ccbcaa4"
 }
